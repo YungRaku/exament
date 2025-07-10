@@ -20,7 +20,7 @@ public class ResenhaController {
     @Autowired
     private ResenhaService resenhaService;
 
-    @GetMapping("/resenhas")
+    @GetMapping
     public List<Resenha> getAllResenhas() {
         return resenhaService.obtenerTodasLasResenhas();
     }

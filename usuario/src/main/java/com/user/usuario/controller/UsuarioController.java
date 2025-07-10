@@ -23,7 +23,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     // Obtener Lista de Usuarios
-    @GetMapping("/usuarios")
+    @GetMapping
     public List<Usuario> getAllUsuarios() {
         return usuarioService.getAllUsuarios();
     }
@@ -39,7 +39,7 @@ public class UsuarioController {
         }
     }
     // Crear Usuario
-    @PostMapping("/usuarios")
+    @PostMapping
     public ResponseEntity<Usuario> createUsuario(Usuario usuario) {
         Usuario createdUsuario = usuarioService.createUsuario(usuario);
         return ResponseEntity.ok(createdUsuario);
