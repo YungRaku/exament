@@ -44,7 +44,7 @@ public class UsuarioServiceTest {
 
     @Test
     void testFindUsuarioById(){
-        Usuario usuario = new Usuario(1L, 1L, "Pepe","a@com","123","calle123");
+        Usuario usuario = new Usuario(1L, 1L, "Pepe","a@com","123","calle123",1L);
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
         
         Optional<Usuario> foundUsuario = Optional.ofNullable(usuarioService.getUsuarioById(1L));
@@ -54,7 +54,7 @@ public class UsuarioServiceTest {
 
     @Test
     void testSaveUsuario() {
-        Usuario usuario = new Usuario(1L, 1L, "Pepe","a@com","123","calle123");
+        Usuario usuario = new Usuario(1L, 1L, "Pepe","a@com","123","calle123",1L);
         when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuario);
 
         Usuario savedUsuario = usuarioService.createUsuario(usuario);

@@ -1,0 +1,80 @@
+package com.resen.resenha.service;
+
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import com.resen.resenha.repository.ResenhaRepository;
+import com.resen.resenha.webClient.ProductoClient;
+import com.resen.resenha.webClient.UsuarioClient;
+import com.resen.resenha.model.Resenha;
+
+@ExtendWith(MockitoExtension.class)
+public class ResenhaServiceTest{
+
+    @InjectMocks
+    private ResenhaService resenhaService;
+
+    @Mock
+    private ResenhaRepository resenhaRepository;
+
+    @Mock
+    private ProductoClient productoClient;
+
+    @Mock 
+    private UsuarioClient usuarioClient;
+
+    @Test
+    void testFindAllResenhas(){
+        //Se crea una mockList de las reseñas y se asegura que equivalga 
+        //a las reseñas del repositorio
+        List<Resenha> mockList = Arrays.asList(new Resenha(1L,1L,1L,"Reseña",10));
+        when(resenhaRepository.findAll()).thenReturn(mockList);
+        List<Resenha> result = resenhaService.obtenerTodasLasResenhas();
+        assertThat(result).isEqualTo(mockList);
+    
+    }
+
+    @Test
+    void testSaveResenha(){
+        //Se crea una resenha que equivalga a una creada ficticiamente
+        Resenha resenha = new Resenha(1L,1L,1L,"Reseña",10);
+        when(usuarioClient.getUsuarioById(1L)).thenReturn(Map.of("id",1L));
+        when(productoClient.getProductoById(1L)).thenReturn(Map.of("id",1L));
+        Resenha nuevaResenha = resenhaService.crearResenha(resenha);
+        assertThat(nuevaResenha).isEqualTo(resenha);
+    }
+
+    @Test
+    void testDeleteResenha(){
+        //Se crea una resenha que será eliminada, no necesita simularse por que returna nulo
+        Resenha resenha = new Resenha(1L,1L,1L,"Reseña",10);
+        when(resenhaRepository.findById(1L)).thenReturn(Optional.of(resenha));
+        resenhaService.eliminarResenha(1L);
+
+    }
+
+    @Test
+    void testFindPorId(){
+        //Se crea una resenha y se muestra buscando su id
+        Resenha resenha = new Resenha(1L,1L,1L,"Reseña",10);
+        when(resenhaRepository.findById(1L)).thenReturn(Optional.of(resenha));
+        Resenha nuevaResenha = resenhaService.obtenerResenhaPorId(1L);
+        assertThat(nuevaResenha).isEqualTo(resenha);
+    }
+
+    
+
+}
+
+
