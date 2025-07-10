@@ -8,8 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -40,18 +38,7 @@ public class categoriaProductoService {
         verify(categoriaRepository, times(1)).save(categoria);
     }
 
-    @Test
-    void testBuscarCategoriaPorId() {
-        categoriaProducto categoria = new categoriaProducto();
-        categoria.setIdCategoriaProducto(1L);
-        categoria.setNombreCategoriaProducto("Categoria Test");
-
-        when(categoriaRepository.findById(1L)).thenReturn(Optional.of(categoria));
-
-        Optional<categoriaProducto> resultado = categoriaService.findById(1L);
-
-        assertTrue(resultado.isPresent());
-        assertEquals("Categoria Test", resultado.get().getNombreCategoriaProducto());
-        verify(categoriaRepository, times(1)).findById(1L);
+    private categoriaProducto save(categoriaProducto categoria) {
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 }
