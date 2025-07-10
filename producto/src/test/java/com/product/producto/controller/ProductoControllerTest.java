@@ -28,15 +28,15 @@ public class ProductoControllerTest {
     @Test
     public void testCrearProducto() {
         Producto producto = new Producto();
-        producto.setId(1L);
-        producto.setNombre("Producto Test");
-        producto.setPrecio(100.0);
+        producto.setIdProducto(1L);
+        producto.setNombreProducto("Producto Test");
+        producto.setPrecioProducto(100.0);
 
         when(productoRepository.save(any(Producto.class))).thenReturn(producto);
 
         Producto resultado = productoService.crearProducto();
         assertNotNull(resultado);
-        assertEquals("Producto Test", resultado.getNombre());
-        assertEquals(100.0, resultado.getPrecio());
+        assertEquals("Producto Test", resultado.getNombreProducto());
+        assertEquals(100.0, resultado.getPrecioProducto());
     }
 }

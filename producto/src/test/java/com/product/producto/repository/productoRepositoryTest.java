@@ -8,12 +8,12 @@ public class productoRepositoryTest {
     @Test
     public void testGettersAndSetters() {
         Producto producto = new Producto();
-        producto.setId(1L);
-        producto.setNombre("Producto Test");
-        producto.setPrecio(100.0);
+        producto.setIdProducto(1L);
+        producto.setNombreProducto("Producto Test");
+        producto.setPrecioProducto(100.0);
 
-        assertEquals(1L, producto.getId());
-        assertEquals("Producto Test", producto.getNombre());
-        assertEquals(100.0, producto.getPrecio());
+        assertEquals(1L, producto.getIdProducto());
+        assertEquals("Producto Test", producto.getNombreProducto());
+        assertEquals(100.0, producto.getPrecioProducto());
     }
 }
